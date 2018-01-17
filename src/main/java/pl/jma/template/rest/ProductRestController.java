@@ -2,6 +2,8 @@ package pl.jma.template.rest;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,7 +36,7 @@ public class ProductRestController {
 		this.productEsClinetService = productEsClinetService;
 	}
 
-	@GetMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Product>> findAll() {
 		LOG.debug("Getting all products");
 
@@ -50,8 +52,8 @@ public class ProductRestController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<Product> save() {
+	@PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Product> save() throws URISyntaxException {
 		LOG.debug("Testing mutual saving with shared UUID");
 
 		Product pr = new Product("Product 1");
@@ -60,7 +62,7 @@ public class ProductRestController {
 		productRepository.save(pr);
 		productSearchRepository.save(pr);
 
-		return ResponseEntity.ok(pr);
+		return ResponseEntity.created(new URI("/api/products" + pr.getId())).body(pr);
 	}
 
 }
