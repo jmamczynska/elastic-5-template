@@ -1,0 +1,42 @@
+/.git/
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# Esimulator files
+*.body
+*.event.log
+*.header
+*.senderseqnums
+*.session
+*.targetseqnums
+/data/
+
+.idea/
+logs/
+*.iml
+**/*.iml
